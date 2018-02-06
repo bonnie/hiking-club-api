@@ -6,3 +6,6 @@ node_modules/
 
 # Project
 dist/
+
+# Enzyme snapshots
+__snapshots__/
