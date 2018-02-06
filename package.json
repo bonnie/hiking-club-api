@@ -1,0 +1,26 @@
+{
+  "name": "hiking-club",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "npm run build-server && npm run build-client",
+    "build-server": "babel src/server --out-dir ./dist",
+    "build-client": "babel src/client --copy-files --out-dir ./dist/public",
+    "start": "node ./dist/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mercurate-team/hiking-club.git"
+  },
+  "author": "team-mercurate",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/mercurate-team/hiking-club/issues"
+  },
+  "homepage": "https://github.com/mercurate-team/hiking-club#readme",
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-preset-env": "^1.6.1"
+  }
+}
