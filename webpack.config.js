@@ -15,9 +15,13 @@ const moduleObj = {
     exclude: /node_modules/,
     loaders: ["babel-loader"],
   }, {
-    test: /\.css$/,
+    test: /\.scss$/,
     use: ExtractTextPlugin.extract({
-      use: 'css-loader',
+      use: [{
+        loader: "css-loader"
+      }, {
+        loader: "sass-loader"
+      }],
     }),
   }],
 };
@@ -36,7 +40,7 @@ const client = {
     new HtmlWebpackPlugin({
       template: 'src/client/index.html'
     }),
-    new ExtractTextPlugin('style.css'),
+    new ExtractTextPlugin('index.css'),
   ]
 };
 
