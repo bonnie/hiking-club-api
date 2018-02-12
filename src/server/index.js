@@ -1,12 +1,22 @@
-import WebServer from './web-server'
+import express from 'express';
+import bodyParser from 'body-parser';
+import cors from 'cors';
 
-let webServer = new WebServer();
-webServer.start()
-  .then(() => {
-    console.log('Web server started!')
-  })
-  .catch(err => {
-    console.error(err)
-    console.error('Failed to start web server')
-  })
-;
+import routes from './routes';
+
+const app = express();
+const port = 3000;
+const corsOptions = {
+	origin: '',
+	optionsSuccessStatus: 200,
+};
+
+app.use(bodyParser.json());
+app.use(cors(corsOptions));
+app.options('*', cors());
+
+app.use('/', routes);
+
+app.listen(port, () => {
+	console.log(`hiking club api now running on port ${port}`);
+});
