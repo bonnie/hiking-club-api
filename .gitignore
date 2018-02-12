@@ -9,3 +9,6 @@ dist/
 
 # Enzyme snapshots
 __snapshots__/
+
+# macOS
+.DS_Store
