@@ -10,7 +10,11 @@
     "build-babel-server": "babel src/server --out-dir ./dist",
     "build-babel-client": "babel src/client --copy-files --out-dir ./dist/public",
     "start": "node ./dist/server.js",
-    "test": "jest ./src"
+    "test": "jest ./src",
+    "db:create": "createdb hiking_club",
+    "db:drop": "dropdb hiking_club",
+    "db:schema": "psql hiking_club < ./src/server/database/schema.sql",
+    "db:seed": "psql hiking_club < ./src/server/database/seed.sql"
   },
   "jest": {
     "setupTestFrameworkScriptFile": "./src/enzyme-setup.js",
