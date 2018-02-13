@@ -8,6 +8,7 @@
     "build": "webpack",
     "build-babel": "babel src/server --out-dir ./dist",
     "start": "npm run build && node ./dist/server.js",
+    "start:dev": "npm run build && nodemon ./dist/server.js",
     "test": "jest ./src",
     "db:create": "createdb hiking_club",
     "db:drop": "dropdb hiking_club",

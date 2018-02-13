@@ -1,14 +1,12 @@
+# macOS
+.DS_Store
+
+# Editors
+.idea/
+.vscode/
+
 # Node
 node_modules/
 
-# Webstorm
-.idea/
-
-# Project
+# Build
 dist/
-
-# Enzyme snapshots
-__snapshots__/
-
-# macOS
-.DS_Store
