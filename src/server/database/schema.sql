@@ -1,0 +1,47 @@
+DROP TABLE IF EXISTS users CASCADE;
+CREATE TABLE users (
+	id SERIAL PRIMARY KEY,
+	name VARCHAR(16) NOT NULL,
+	email VARCHAR(256) UNIQUE NOT NULL,
+	password VARCHAR(64) NOT NULL,
+	profile_picture VARCHAR(128) DEFAULT '/profile_pictures/default-a.png'
+);
+
+DROP TABLE IF EXISTS trails CASCADE;
+CREATE TABLE trails (
+	id SERIAL PRIMARY KEY,
+	name VARCHAR(32) NOT NULL,
+	latitude FLOAT8 DEFAULT 0,
+	longitude FLOAT8 DEFAULT 0,
+	distance FLOAT8 DEFAULT 0,
+	duration SMALLINT DEFAULT 0,
+	elevation SMALLINT DEFAULT 0,
+	trail_image VARCHAR(128) DEFAULT '/trail_pictures/default-trail.png'
+);
+
+DROP TABLE IF EXISTS reviews CASCADE;
+CREATE TABLE reviews (
+	id SERIAL PRIMARY KEY,
+	trail_id INTEGER REFERENCES trails(id) NOT NULL,
+	user_id INTEGER REFERENCES users(id) NOT NULL,
+	rating SMALLINT DEFAULT 1,
+	comment VARCHAR(140)
+);
+
+DROP TABLE IF EXISTS journals CASCADE;
+CREATE TABLE journals (
+	id SERIAL PRIMARY KEY,
+	trail_id INTEGER REFERENCES trails(id) NOT NULL,
+	user_id INTEGER REFERENCES users(id) NOT NULL,
+	title VARCHAR(64) NOT NULL,
+	entry VARCHAR(512) NOT NULL
+);
+
+DROP TABLE IF EXISTS pins CASCADE;
+CREATE TABLE pins (
+	id SERIAL PRIMARY KEY,
+	journal_id INTEGER REFERENCES journals(id) NOT NULL,
+	latitude FLOAT8 DEFAULT 0,
+	longitude FLOAT8 DEFAULT 0,
+	comment VARCHAR(60)
+);
