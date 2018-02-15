@@ -7,7 +7,7 @@ import users from './users';
 const router = express.Router();
 
 router.get('/', (request, response, next) => {
-	response.status(200).json({ message: 'hello' });
+	response.status(200).json({ message: 'now hiking!' });
 });
 
 router.use('/', auth);
