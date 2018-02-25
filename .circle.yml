@@ -1,8 +1,29 @@
 version: 2
 jobs:
   build:
-    machine:
-      node:
-        version: 8.4.0
+    docker:
+      - image: circleci/node:8.4
+      - image: circleci/postgres:10.2-alpine-postgis
+        environment:
+          POSTGRES_DB: hiking_club
+          POSTGRES_USER: circleci
+
+    working_directory: ~/repo
+
+    steps:
+      - checkout
+
+      - restore_cache:
+          keys:
+          - v1-dependencies-{{ checksum "package.json" }}
+          - v1-dependencies-
+
+      - run: npm install
+      - save_cache:
+          paths:
+            - node_modules
+          key: v1-dependencies-{{ checksum "package.json" }}
+  test:
     post:
       - bash <(curl -s https://codecov.io/bash)
+- run: npm test
