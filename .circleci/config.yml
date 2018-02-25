@@ -4,9 +4,6 @@ jobs:
     docker:
       - image: circleci/node:8.4
       - image: circleci/postgres:10.2-alpine-postgis
-        environment:
-          POSTGRES_DB: hiking_club
-          POSTGRES_USER: circleci
 
     working_directory: ~/repo
 
@@ -23,7 +20,5 @@ jobs:
           paths:
             - node_modules
           key: v1-dependencies-{{ checksum "package.json" }}
-  test:
-    post:
-      - bash <(curl -s https://codecov.io/bash)
+      
 - run: npm test
