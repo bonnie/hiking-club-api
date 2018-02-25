@@ -1,9 +1,5 @@
 version: 2
 jobs:
-  database:
-    override:
-      - psql -u circleci hiking_club < ./src/server/database/schema.sql
-      - psql -u circleci hiking_club < ./src/server/database/seed.sql
   build:
     docker:
       - image: circleci/node:8.4
