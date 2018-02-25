@@ -7,7 +7,7 @@
     "build": "babel src/server --out-dir ./dist",
     "start": "node ./dist/index.js",
     "start:dev": "nodemon src/server/index.js --exec babel-node --presets env",
-    "test": "mocha ./src/test/ --recursive --exit --require babel-core/register",
+    "test": "cross-env NODE_ENV=test nyc mocha ./src/test/ --recursive --exit --require babel-core/register",
     "db:init": "npm run db:create && npm run db:schema && npm run db:seed",
     "db:create": "createdb hiking_club",
     "db:drop": "dropdb hiking_club",
@@ -25,21 +25,34 @@
   },
   "homepage": "https://github.com/mercurate-team/hiking-club#readme",
   "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-plugin-istanbul": "^4.1.5",
+    "babel-preset-env": "^1.6.1",
+    "babel-register": "^6.26.0",
     "chai": "^4.1.2",
     "chai-http": "^3.0.0",
-    "coveralls": "^3.0.0",
-    "eslint": "^4.17.0",
+    "cross-env": "^5.1.3",
+    "eslint": "^4.18.1",
     "eslint-config-mercurate": "^1.0.0",
     "mocha": "^5.0.1",
-    "mocha-lcov-reporter": "^1.3.0"
+    "nyc": "^11.4.1"
   },
   "dependencies": {
-    "babel-cli": "^6.26.0",
     "babel-core": "^6.26.0",
-    "babel-preset-env": "^1.6.1",
     "body-parser": "^1.18.2",
     "cors": "^2.8.4",
     "express": "^4.16.2",
     "rimraf": "^2.6.2"
+  },
+  "nyc": {
+    "require": [
+      "babel-register"
+    ],
+    "reporter": [
+      "lcov",
+      "text"
+    ],
+    "sourceMap": false,
+    "instrument": false
   }
 }

@@ -1,3 +1,6 @@
 machine:
   node:
     version: 8.4.0
+  test:
+    post:
+      - bash <(curl -s https://codecov.io/bash)
