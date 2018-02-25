@@ -4,7 +4,7 @@ jobs:
     override:
       - psql -u circleci hiking_club < ./src/server/database/schema.sql
       - psql -u circleci hiking_club < ./src/server/database/seed.sql
-  test:
+  build:
     docker:
       - image: circleci/node:8.4
       - image: circleci/postgres:10.2-alpine-postgis
