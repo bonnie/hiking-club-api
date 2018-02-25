@@ -7,7 +7,7 @@
     "build": "babel src/server --out-dir ./dist",
     "start": "node ./dist/index.js",
     "start:dev": "nodemon src/server/index.js --exec babel-node --presets env",
-    "test": "mocha ./test",
+    "test": "mocha ./src/test/ --recursive --exit --require babel-core/register",
     "db:init": "npm run db:create && npm run db:schema && npm run db:seed",
     "db:create": "createdb hiking_club",
     "db:drop": "dropdb hiking_club",
