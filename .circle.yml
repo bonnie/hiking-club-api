@@ -1,7 +1,8 @@
 version: 2
-machine:
-  node:
-    version: 8.4.0
-  test:
+jobs:
+  build:
+    machine:
+      node:
+        version: 8.4.0
     post:
       - bash <(curl -s https://codecov.io/bash)
