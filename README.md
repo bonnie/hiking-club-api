@@ -1,7 +1,7 @@
 # Hiking Club Back End API
 
 [![CircleCI](https://img.shields.io/circleci/project/github/mercurate-team/hiking-club-api/primary.svg?style=flat-square)](https://circleci.com/gh/mercurate-team/hiking-club-api/tree/primary)
-[![Codecov](https://img.shields.io/codecov/c/github/mercurate-team/hiking-club-api.svg?style=flat-square)](https://codecov.io/gh/mercurate-team/hiking-club-api)
+[![Codecov](https://img.shields.io/codecov/c/github/mercurate-team/hiking-club-api/primary.svg?style=flat-square)](https://codecov.io/gh/mercurate-team/hiking-club-api)
 
 This repo holds the back end API server for the Hiking Club web app
 
