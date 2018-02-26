@@ -1,6 +1,7 @@
 # Hiking Club Back End API
 
-[![CircleCI](https://circleci.com/gh/mercurate-team/hiking-club-api/tree/primary.svg?style=svg)](https://circleci.com/gh/mercurate-team/hiking-club-api/tree/primary)
+[![CircleCI](https://img.shields.io/circleci/project/github/mercurate-team/hiking-club-api.svg?style=flat-square)](https://circleci.com/gh/mercurate-team/hiking-club-api/tree/primary)
+[![Codecov](https://img.shields.io/codecov/c/github/mercurate-team/hiking-club-api.svg?style=flat-square)](https://codecov.io/gh/mercurate-team/hiking-club-api)
 
 This repo holds the back end API server for the Hiking Club web app
 
@@ -16,4 +17,4 @@ To build and run the API you need npm and node installed, then just run the foll
 
 Running the test is as simple as running `npm test` after installing dependencies
 
-Tests have been written with Jest and cover each API endpoint
+Tests have been written with mocha and chai and cover each API endpoint
