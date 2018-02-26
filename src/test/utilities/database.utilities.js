@@ -1,4 +1,4 @@
-import database from '../model/database';
+import database from '../../server/model/database';
 
 export function getTables() {
 	return database.query(`
@@ -10,7 +10,9 @@ export function getTables() {
 export function truncateDatabase() {
 	return getTables()
 		.then((tables) => {
-			return database.multi(tables.map(`TRUNCATE ${table.table_name} RESTART IDENTITY CASCADE;`).join(''));
+			return database.multi(tables.map((table) => {
+				return `TRUNCATE ${table.table_name} RESTART IDENTITY CASCADE;`;
+			}).join(''));
 		})
 		.catch((error) => {
 			console.error(error);
