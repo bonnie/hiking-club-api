@@ -8,7 +8,7 @@
     "start": "node ./dist/index.js",
     "start:dev": "nodemon src/server/index.js --exec babel-node --presets env",
     "test": "mocha ./src/test/ --recursive --exit --require babel-core/register",
-    "coverage": "nyc report --reporter=text-lcov > coverage.lcov && codecov",
+    "coverage": "nyc npm test > coverage.lcov && codecov",
     "db:init": "npm run db:create && npm run db:schema && npm run db:seed",
     "db:create": "createdb hiking_club",
     "db:drop": "dropdb hiking_club",
@@ -50,7 +50,8 @@
       "babel-register"
     ],
     "reporter": [
-      "lcov"
+      "lcov",
+      "text"
     ],
     "sourceMap": false,
     "instrument": false
