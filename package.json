@@ -5,7 +5,7 @@
   "scripts": {
     "clean": "rimraf dist node_modules .nyc_output coverage coverage.lcov",
     "build": "babel src/server --out-dir ./dist",
-    "start": "node ./dist/index.js",
+    "start": "npm run build && node ./dist/index.js",
     "start:dev": "nodemon src/server/index.js --exec babel-node --presets env",
     "test": "mocha ./src/test/ --recursive --exit --require babel-core/register",
     "coverage": "nyc npm test > coverage.lcov && codecov",
