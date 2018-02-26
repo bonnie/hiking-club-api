@@ -11,12 +11,6 @@ describe('users database model', function() {
 		it('should be a function', function() {
 			expect(getUserByEmail).to.be.a('function');
 		});
-
-		it('should return a user if they exist', function() {
-			expect(getUserByEmail('test@test.com')).to.deep.equal({
-				username: 'fart',
-			});
-		});
 	});
 
 	describe('getUserById method', function() {
