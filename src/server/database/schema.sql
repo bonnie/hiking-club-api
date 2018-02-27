@@ -4,7 +4,8 @@ CREATE TABLE users (
 	name VARCHAR(16) NOT NULL,
 	email VARCHAR(256) UNIQUE NOT NULL,
 	password VARCHAR(64) NOT NULL,
-	profile_picture VARCHAR(128) DEFAULT '/profile_pictures/default-a.png'
+	profile_picture VARCHAR(128) DEFAULT '/profile_pictures/default-a.png',
+	created_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
 );
 
 DROP TABLE IF EXISTS trails CASCADE;
@@ -25,7 +26,9 @@ CREATE TABLE reviews (
 	trail_id INTEGER REFERENCES trails(id) NOT NULL,
 	user_id INTEGER REFERENCES users(id) NOT NULL,
 	rating SMALLINT DEFAULT 1,
-	comment VARCHAR(140)
+	comment VARCHAR(140),
+	created_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
+
 );
 
 DROP TABLE IF EXISTS journals CASCADE;
@@ -34,7 +37,8 @@ CREATE TABLE journals (
 	trail_id INTEGER REFERENCES trails(id) NOT NULL,
 	user_id INTEGER REFERENCES users(id) NOT NULL,
 	title VARCHAR(64) NOT NULL,
-	entry VARCHAR(512) NOT NULL
+	entry VARCHAR(512) NOT NULL,
+	created_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
 );
 
 DROP TABLE IF EXISTS pins CASCADE;
