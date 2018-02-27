@@ -8,7 +8,7 @@
     "start": "npm run build && node ./dist/index.js",
     "start:dev": "nodemon src/server/index.js --exec babel-node --presets env",
     "test": "mocha ./src/test/ --recursive --exit --require babel-core/register",
-    "coverage": "nyc npm test > coverage.lcov && codecov",
+    "coverage": "NODE_ENV=test nyc npm test > coverage.lcov && codecov",
     "db:init": "npm run db:create && npm run db:schema && npm run db:seed",
     "db:create": "createdb hiking_club",
     "db:drop": "dropdb hiking_club",
@@ -35,6 +35,7 @@
     "codecov": "^3.0.0",
     "eslint": "^4.18.1",
     "eslint-config-mercurate": "^1.0.0",
+    "istanbul": "^0.4.5",
     "mocha": "^5.0.1",
     "nyc": "^11.4.1"
   },
