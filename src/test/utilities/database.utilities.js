@@ -3,7 +3,7 @@ import database from '../../server/model/database';
 export function getTables() {
 	return database.query(`
 		SELECT table_name
-		FROM information_schema_tables
+		FROM information_schema.tables
 		WHERE table_schema = 'public';`);
 }
 

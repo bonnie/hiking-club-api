@@ -3,7 +3,9 @@
 /* eslint func-names: ["error", "never"] */
 
 import { expect } from 'chai';
-import { describe, it } from 'mocha';
+import { describe, it, beforeEach } from 'mocha';
+import { truncateDatabase } from '../utilities/database.utilities';
+
 import {
 	getAllTrails,
 	getTrailById,
@@ -13,6 +15,10 @@ import {
 } from '../../server/model/trails';
 
 describe('trails database model', function() {
+	beforeEach('truncate database', function() {
+		return truncateDatabase();
+	});
+
 	describe('getAllTrails function', function() {
 		it('should be a function', function() {
 			expect(getAllTrails).to.be.a('function');
