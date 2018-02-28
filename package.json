@@ -12,8 +12,8 @@
     "db:init": "npm run db:create && npm run db:schema && npm run db:seed",
     "db:create": "createdb hiking_club",
     "db:drop": "dropdb hiking_club",
-    "db:schema": "psql hiking_club < ./src/server/database/schema.sql",
-    "db:seed": "psql hiking_club < ./src/server/database/seed.sql"
+    "db:schema": "psql -h localhost -p 5432 hiking_club < ./src/server/database/schema.sql",
+    "db:seed": "psql -h localhost -p 5432 hiking_club < ./src/server/database/seed.sql"
   },
   "repository": {
     "type": "git",
