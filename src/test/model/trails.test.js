@@ -48,6 +48,10 @@ describe('trails database model', function() {
 			it('should return a trail with an id', function() {
 				expect(testTrail.id).to.equal(1);
 			});
+
+			it('should return a trail with a name', function() {
+				expect(testTrail.name).to.equal(name);
+			})
 		});
 	});
 

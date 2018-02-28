@@ -3,6 +3,15 @@ jobs:
   build:
     docker:
       - image: circleci/node:8.4
+        environment:
+          NODE_ENV: test
+          PGHOST: 127.0.0.1
+          PGUSER: hiker
+      - image: circleci/postgres:10.2-alpine-ram
+        environment:
+          POSTGRES_DB: hiking_club
+          POSTGRES_PASSWORD: ""
+          POSTGRES_USER: root
       
     working_directory: ~/repo
 
