@@ -24,9 +24,10 @@ jobs:
           - v1-dependencies-
 
       - run: npm install
+      - run: sudo apt-get install postgres-client
       - save_cache:
           paths:
             - node_modules
           key: v1-dependencies-{{ checksum "package.json" }}
-      - run: npm run db:schema
+      - run: npm run db:init
       - run: npm test && npm run coverage
