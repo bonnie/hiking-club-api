@@ -9,7 +9,6 @@ jobs:
           PGUSER: root
       - image: circleci/postgres:10.2-alpine-ram
         environment:
-          POSTGRES_DB: hiking_club
           POSTGRES_PASSWORD: ""
           POSTGRES_USER: root
       
@@ -23,8 +22,9 @@ jobs:
           - v1-dependencies-{{ checksum "package.json" }}
           - v1-dependencies-
 
+      - run: sudo apt-get update
+      - run: sudo apt-get install postgresql-client
       - run: npm install
-      - run: sudo apt-get install postgres-client
       - save_cache:
           paths:
             - node_modules
