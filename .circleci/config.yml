@@ -6,7 +6,7 @@ jobs:
         environment:
           NODE_ENV: test
           PGHOST: 127.0.0.1
-          PGUSER: hiker
+          PGUSER: root
       - image: circleci/postgres:10.2-alpine-ram
         environment:
           POSTGRES_DB: hiking_club
