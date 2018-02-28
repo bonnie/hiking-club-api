@@ -8,12 +8,12 @@
     "start": "npm run build && node ./dist/index.js",
     "start:dev": "nodemon src/server/index.js --exec babel-node --presets env",
     "test": "mocha ./src/test/ --recursive --exit --require babel-core/register",
-    "coverage": "NODE_ENV=test nyc npm test > coverage.lcov && codecov",
+    "coverage": "nyc npm test > coverage.lcov && codecov",
     "db:init": "npm run db:create && npm run db:schema && npm run db:seed",
     "db:create": "createdb hiking_club",
     "db:drop": "dropdb hiking_club",
-    "db:schema": "psql hiking_club < ./src/server/database/schema.sql",
-    "db:seed": "psql hiking_club < ./src/server/database/seed.sql"
+    "db:schema": "psql -h localhost -p 5432 hiking_club < ./src/server/database/schema.sql",
+    "db:seed": "psql -h localhost -p 5432 hiking_club < ./src/server/database/seed.sql"
   },
   "repository": {
     "type": "git",

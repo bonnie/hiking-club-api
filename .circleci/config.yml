@@ -3,6 +3,14 @@ jobs:
   build:
     docker:
       - image: circleci/node:8.4
+        environment:
+          NODE_ENV: test
+          PGHOST: 127.0.0.1
+          PGUSER: root
+      - image: circleci/postgres:10.2-alpine-ram
+        environment:
+          POSTGRES_PASSWORD: ""
+          POSTGRES_USER: root
       
     working_directory: ~/repo
 
@@ -14,10 +22,12 @@ jobs:
           - v1-dependencies-{{ checksum "package.json" }}
           - v1-dependencies-
 
+      - run: sudo apt-get update
+      - run: sudo apt-get install postgresql-client
       - run: npm install
       - save_cache:
           paths:
             - node_modules
           key: v1-dependencies-{{ checksum "package.json" }}
-        
+      - run: npm run db:init
       - run: npm test && npm run coverage
