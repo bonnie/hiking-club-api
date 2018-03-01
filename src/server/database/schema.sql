@@ -15,8 +15,8 @@ CREATE TABLE trails (
 	latitude FLOAT8 DEFAULT 0,
 	longitude FLOAT8 DEFAULT 0,
 	distance FLOAT8 DEFAULT 0,
-	duration SMALLINT DEFAULT 0,
-	elevation SMALLINT DEFAULT 0,
+	duration FLOAT8 DEFAULT 0,
+	elevation FLOAT8 DEFAULT 0,
 	trail_image VARCHAR(128) DEFAULT '/trail_pictures/default-trail.png'
 );
 
