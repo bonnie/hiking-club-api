@@ -1,5 +1,8 @@
 import database from './database';
 
+export function createUser(name, email, password, profilePicture) {
+}
+
 export function getUserByEmail(email) {
 	return database.any(`
 		SELECT *

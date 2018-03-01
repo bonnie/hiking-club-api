@@ -125,6 +125,10 @@ describe('trails database model', function() {
 		it('should be a function', function() {
 			expect(getTrailById).to.be.a('function');
 		});
+
+		context('when the database is empty', function() {
+			
+		});
 	});
 
 	describe('createTrail function', function() {
