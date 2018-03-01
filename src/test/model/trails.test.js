@@ -16,8 +16,8 @@ import {
 
 describe('trails database model', function() {
 	const name = 'Tuxachanie Trail';
-	const latitude = '30.666780';
-	const longitude = '-89.133125';
+	const latitude = 30.666780;
+	const longitude = -89.133125;
 	const distance = 12.1;
 	const duration = 4.03;
 	const elevation = 179.1;
@@ -51,7 +51,31 @@ describe('trails database model', function() {
 
 			it('should return a trail with a name', function() {
 				expect(testTrail.name).to.equal(name);
-			})
+			});
+
+			it('should return a trail with a latitude', function() {
+				expect(testTrail.latitude).to.equal(latitude);
+			});
+
+			it('should return a trail with a longitude', function() {
+				expect(testTrail.longitude).to.equal(longitude);
+			});
+
+			it('should return a trail with a distance', function() {
+				expect(testTrail.distance).to.equal(distance);
+			});
+
+			it('should return a trail with a duration', function() {
+				expect(testTrail.duration).to.equal(duration);
+			});
+
+			it('should return a trail with an elevation', function() {
+				expect(testTrail.elevation).to.equal(elevation);
+			});
+
+			it('should return a trail with a trail image', function() {
+				expect(testTrail.trail_image).to.equal(trailImage);
+			});
 		});
 	});
 
