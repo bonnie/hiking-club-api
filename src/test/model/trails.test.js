@@ -25,7 +25,7 @@ describe('trails database model', function() {
 
 	beforeEach('truncate database', function() {
 		return truncateDatabase()
-			.then(() => {
+			.then(function() {
 				return createTrail(name, latitude, longitude, distance, duration, elevation, trailImage);
 			});
 	});
@@ -38,9 +38,15 @@ describe('trails database model', function() {
 		context('when there is a single trail in the database', function() {
 			let testTrail = {};
 
-			before(() => {
-				getAllTrails()
-					.then((queryResult) => {
+			before(function() {
+				return truncateDatabase()
+					.then(function() {
+						return createTrail(name, latitude, longitude, distance, duration, elevation, trailImage);
+					})
+					.then(function() {
+						return getAllTrails();
+					})
+					.then(function(queryResult) {
 						[testTrail] = queryResult;
 					});
 			});
@@ -75,6 +81,42 @@ describe('trails database model', function() {
 
 			it('should return a trail with a trail image', function() {
 				expect(testTrail.trail_image).to.equal(trailImage);
+			});
+		});
+
+		context('when there are multiple trails in the database', function() {
+			let testTrails = {};
+
+			before(function() {
+				return createTrail(name, latitude, longitude, distance, duration, elevation, trailImage)
+					.then(function() {
+						return getAllTrails();
+					})
+					.then(function(queryResult) {
+						testTrails = queryResult;
+					});
+			});
+
+			it('should return more than one trail', function() {
+				expect(testTrails.length).to.equal(2);
+			});
+		});
+
+		context('when the database is empty', function() {
+			let testTrail = {};
+
+			before(function() {
+				return truncateDatabase()
+					.then(function() {
+						return getAllTrails();
+					})
+					.then(function(queryResult) {
+						testTrail = queryResult;
+					});
+			});
+
+			it('should return an empty object', function() {
+				expect(testTrail).to.deep.equal([]);
 			});
 		});
 	});
