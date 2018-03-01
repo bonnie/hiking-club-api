@@ -4,12 +4,15 @@
 /* eslint no-undef: 0 */
 
 import { expect } from 'chai';
-import { truncateDatabase } from '../utilities/database.utilities';
+import {
+	truncateDatabase,
+	runDatabaseQuery,
+} from '../utilities/database.utilities';
 
 import {
+	createTrail,
 	getAllTrails,
 	getTrailById,
-	createTrail,
 	updateTrail,
 	searchTrailsByName,
 } from '../../server/model/trails';
@@ -23,13 +26,6 @@ describe('trails database model', function() {
 	const elevation = 179.1;
 	const trailImage = '#';
 
-	beforeEach('truncate database', function() {
-		return truncateDatabase()
-			.then(function() {
-				return createTrail(name, latitude, longitude, distance, duration, elevation, trailImage);
-			});
-	});
-
 	describe('getAllTrails function', function() {
 		it('should be a function', function() {
 			expect(getAllTrails).to.be.a('function');
@@ -41,7 +37,10 @@ describe('trails database model', function() {
 			before(function() {
 				return truncateDatabase()
 					.then(function() {
-						return createTrail(name, latitude, longitude, distance, duration, elevation, trailImage);
+						return runDatabaseQuery(`
+								INSERT INTO trails(name, latitude, longitude, distance, duration, elevation, trail_image)
+								VALUES ($1, $2, $3, $4, $5, $6, $7);
+							`, [name, latitude, longitude, distance, duration, elevation, trailImage]);
 					})
 					.then(function() {
 						return getAllTrails();
@@ -88,7 +87,20 @@ describe('trails database model', function() {
 			let testTrails = {};
 
 			before(function() {
-				return createTrail(name, latitude, longitude, distance, duration, elevation, trailImage)
+				return truncateDatabase()
+					.then(function() {
+						return runDatabaseQuery(`
+								INSERT INTO trails(name, latitude, longitude, distance, duration, elevation, trail_image)
+								VALUES
+								($1, $2, $3, $4, $5, $6, $7),
+								($1, $2, $3, $4, $5, $6, $7),
+								($1, $2, $3, $4, $5, $6, $7),
+								($1, $2, $3, $4, $5, $6, $7),
+								($1, $2, $3, $4, $5, $6, $7),
+								($1, $2, $3, $4, $5, $6, $7),
+								($1, $2, $3, $4, $5, $6, $7);
+							`, [name, latitude, longitude, distance, duration, elevation, trailImage]);
+					})
 					.then(function() {
 						return getAllTrails();
 					})
@@ -98,7 +110,7 @@ describe('trails database model', function() {
 			});
 
 			it('should return more than one trail', function() {
-				expect(testTrails.length).to.equal(2);
+				expect(testTrails.length).to.equal(7);
 			});
 		});
 

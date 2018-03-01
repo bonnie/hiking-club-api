@@ -7,6 +7,10 @@ export function getTables() {
 		WHERE table_schema = 'public';`);
 }
 
+export function runDatabaseQuery(query, params) {
+	return database.query(query, params);
+}
+
 export function truncateDatabase() {
 	return getTables()
 		.then((tables) => {
