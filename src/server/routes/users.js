@@ -16,6 +16,10 @@ import {
 } from '../model/journals';
 import {
 	getAllPinsByJournalId,
+	createPin,
+	getPinById,
+	updatePin,
+	deletePin,
 } from '../model/pins';
 
 const router = express.Router();
@@ -163,6 +167,71 @@ router.get('/:username/journals/:id/pins', (request, response, next) => {
 	return getAllPinsByJournalId(id)
 		.then((pins) => {
 			response.status(200).json(pins);
+		})
+		.catch((error) => {
+			next(error);
+		});
+});
+
+router.post('/:username/journals/:id/pins', (request, response, next) => {
+	const { id } = request.params;
+	const {
+		latitude,
+		longitude,
+		comment,
+	} = request.body;
+
+	return createPin(id, latitude, longitude, comment)
+		.then((pin) => {
+			response.status(200).json(pin);
+		})
+		.catch((error) => {
+			next(error);
+		});
+});
+
+router.get('/:username/journals/:journalId/pins/:pinId', (request, response, next) => {
+	const {
+		pinId,
+	} = request.body;
+
+	return getPinById(pinId)
+		.then((pin) => {
+			response.status(200).json(pin);
+		})
+		.catch((error) => {
+			next(error);
+		});
+});
+
+router.put('/:username/journals/:journalId/pins/:pinId', (request, response, next) => {
+	const {
+		journalId,
+		pinId,
+	} = request.params;
+	const {
+		latitude,
+		longitude,
+		comment,
+	} = request.body;
+
+	return updatePin(pinId, journalId, latitude, longitude, comment)
+		.then((pin) => {
+			response.status(200).json(pin);
+		})
+		.catch((error) => {
+			next(error);
+		});
+});
+
+router.delete('/:username/journals/:journalId/pins/:pinId', (request, response, next) => {
+	const {
+		pinId,
+	} = request.params;
+
+	return deletePin(pinId)
+		.then((pin) => {
+			response.status(200).json(pin);
 		})
 		.catch((error) => {
 			next(error);
