@@ -17,8 +17,5 @@ export function truncateDatabase() {
 			return database.multi(tables.map((table) => {
 				return `TRUNCATE ${table.table_name} RESTART IDENTITY CASCADE;`;
 			}).join(''));
-		})
-		.catch((error) => {
-			console.error(error);
 		});
 }
