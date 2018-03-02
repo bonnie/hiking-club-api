@@ -2,7 +2,9 @@ import database from './database';
 
 export function createUser(name, email, password, profilePicture) {
 	return database.one(`
-	`, [name, email, password, profilePicture]);
+		INSERT INTO users(name, email, password, profile_picture)
+		VALUES ($1, $2, $3, $4)
+		RETURNING *;`, [name, email, password, profilePicture]);
 }
 
 export function getUserByEmail(email) {

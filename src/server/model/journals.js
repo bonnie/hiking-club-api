@@ -2,35 +2,46 @@ import database from './database';
 
 export function createJournal(trailId, userId, title, entry) {
 	return database.one(`
-	`, [trailId, userId, title, entry]);
+		INSERT INTO journals
+		VALUES ($1, $2, $3, $4)
+		RETURNING *:`, [trailId, userId, title, entry]);
 }
 
 export function getAllJournalsByTrailId(id) {
 	return database.any(`
-	`, [id]);
+		SELECT *
+		FROM journals
+		WHERE trail_id = $1;`, [id]);
 }
 
 export function getAllJournalsByUserId(id) {
 	return database.any(`
-	`, [id]);
+		SELECT *
+		FROM journals
+		WHERE user_id = $1;`, [id]);
 }
 
-export function getJournalByTrailId(id) {
+export function getJournalById(id) {
 	return database.one(`
-	`, [id]);
-}
-
-export function getJournalByUserId(id) {
-	return database.one(`
-	`, [id]);
+		SELECT *
+		FROM journals
+		WHERE id = $1;`, [id]);
 }
 
 export function updateJournal(id, trailId, userId, title, entry) {
 	return database.one(`
-	`, [id, trailId, userId, title, entry]);
+		UPDATE journals
+		SET trail_id = $1,
+				user_id = $2,
+				title = $3,
+				entry = $4,
+		WHERE id = $1
+		RETURNING *;`, [id, trailId, userId, title, entry]);
 }
 
 export function deleteJournal(id) {
 	return database.one(`
-	`, [id]);
+		DELETE FROM journals
+		WHERE id = $1
+		RETURNING *;`, [id]);
 }

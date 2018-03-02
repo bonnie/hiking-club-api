@@ -3,8 +3,7 @@ import database from './database';
 export function getAllTrails() {
 	return database.any(`
 		SELECT *
-		FROM trails;
-	`);
+		FROM trails;`);
 }
 
 export function getTrailById(id) {

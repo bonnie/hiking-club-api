@@ -2,25 +2,39 @@ import database from './database';
 
 export function createPin(journalId, latitude, longitude, comment) {
 	return database.one(`
-	`, [journalId, latitude, longitude, comment]);
+		INSERT INTO pins
+		VALUES ($1, $2, $3, $4)
+		RETURNING *;`, [journalId, latitude, longitude, comment]);
 }
 
 export function getAllPinsByJournalId(id) {
 	return database.any(`
-	`, [id]);
+		SELECT *
+		FROM pins
+		WHERE journal_id = $1;`, [id]);
 }
 
 export function getPinById(id) {
 	return database.one(`
-	`, [id]);
+		SELECT *
+		FROM pins
+		WHERE id = $1;`, [id]);
 }
 
 export function updatePin(id, journalId, latitude, longitude, comment) {
 	return database.one(`
-	`, [id, journalId, latitude, longitude, comment]);
+		UPDATE pins
+		SET journal_id = $1,
+				latitude = $2,
+				longitude = $3,
+				comment = $4,
+		WHERE id = $1
+		RETURNING *;`, [id, journalId, latitude, longitude, comment]);
 }
 
 export function deletePin(id) {
 	return database.one(`
-	`, [id]);
+		DELETE FROM pins
+		WHERE id = $1
+		RETURNING *;`, [id]);
 }
