@@ -5,3 +5,13 @@
 
 import { expect } from 'chai';
 import { truncateDatabase } from '../utilities/database.utilities';
+
+import {
+	createJournal,
+	getAllJournalsByTrailId,
+	getAllJournalsByUserId,
+	getJournalByTrailId,
+	getJournalByUserId,
+	updateJournal,
+	deleteJournal,
+} from '../../server/model/journals';

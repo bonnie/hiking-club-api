@@ -3,15 +3,14 @@ import database from './database';
 export function getAllTrails() {
 	return database.any(`
 		SELECT *
-		FROM trails
-	`);
+		FROM trails;`);
 }
 
 export function getTrailById(id) {
 	return database.one(`
 		SELECT *
 		FROM trails
-		WHERE id = $1`, [id]);
+		WHERE id = $1;`, [id]);
 }
 
 export function createTrail(name, latitude, longitude, distance, duration, elevation, trailImage) {
@@ -31,7 +30,8 @@ export function updateTrail(id, name, latitude, longitude, distance, duration, e
 				duration = $6,
 				elevation = $7,
 				trail_image = $8
-		WHERE id = $1`, [id, name, latitude, longitude, distance, duration, elevation, trailImage]);
+		WHERE id = $1
+		RETURNING *;`, [id, name, latitude, longitude, distance, duration, elevation, trailImage]);
 }
 
 export function searchTrailsByName(query) {
@@ -39,5 +39,5 @@ export function searchTrailsByName(query) {
 		SELECT *
 		FROM trails
 		WHERE lower(name)
-		LIKE $1::text`, [`%${query.toLowerCase().replace(/\s+/, '%')}%`]);
+		LIKE $1::text;`, [`%${query.toLowerCase().replace(/\s+/, '%')}%`]);
 }

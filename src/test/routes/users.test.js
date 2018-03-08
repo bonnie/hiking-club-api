@@ -3,4 +3,13 @@
 /* eslint func-names: ["error", "never"] */
 /* eslint no-undef: 0 */
 
-import { expect } from 'chai';
+import chai, { expect } from 'chai';
+import chaiHttp from 'chai-http';
+import {
+	truncateDatabase,
+	runDatabaseQuery,
+} from '../utilities/database.utilities';
+
+const server = 'http://localhost:8080';
+
+chai.use(chaiHttp);

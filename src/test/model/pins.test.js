@@ -5,3 +5,11 @@
 
 import { expect } from 'chai';
 import { truncateDatabase } from '../utilities/database.utilities';
+
+import {
+	createPin,
+	getAllPinsByJournalId,
+	getPinById,
+	updatePin,
+	deletePin,
+} from '../../server/model/pins';
